@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Live Editor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="color-bar"></div>
+        <div class="nav-content">
+            <span class="site-title">PONYO</span>
+            <div class="nav-links">
+                <a href="#" class="nav-button active" id="editor-link">Editor</a>
+                <a href="https://mermaid.js.org/intro/" target="_blank" class="nav-button">Documentation</a>
+                <div class="dropdown nav-button">
+                    <span>Examples ▾</span>
+                    <div class="dropdown-content">
+                        <a href="#" id="example-flowchart">Flowchart</a>
+                        <a href="#" id="example-sequence">Sequence Diagram</a>
+                        <a href="#" id="example-gantt">Gantt Chart</a>
+                        <a href="#" id="example-class">Class Diagram</a>
+                    </div>
+                </div>
+                 <!-- Theme Selector -->
+                <div class="nav-item">
+                     <label for="theme-selector" class="visually-hidden">Diagram Theme:</label>
+                     <select id="theme-selector" class="nav-button theme-select">
+                        <option value="classic">Theme: Classic</option>
+                        <!-- Removed neutral, evergreen, mac -->
+                        <option value="dark">Theme: Dark (Mermaid)</option>
+                        <option value="forest">Theme: Forest (Mermaid)</option>
+                        <option value="catppuccin">Theme: Catppuccin</option>
+                        <option value="dracula">Theme: Dracula</option>
+                        <option value="rosepine">Theme: Rosé Pine</option>
+                        <option value="materialyou">Theme: Material You</option>
+                    </select>
+                </div>
+                <a href="#" id="about-link" class="nav-button">About</a>
+            </div>
+            <div class="save-container">
+                <button id="save-button" class="nav-button save-button">Save ▾</button>
+                <div id="save-options" class="save-options-dropdown">
+                    <a href="#" id="download-svg">Download as SVG</a>
+                    <a href="#" id="download-png">Download as PNG</a>
+                    <a href="#" id="copy-markdown">Copy as Markdown</a>
+                    <a href="#" id="copy-html">Copy as HTML</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="editor-container">
+        <div class="editor-pane">
+            <textarea id="mermaid-input" spellcheck="false" placeholder="Enter Mermaid code here..."></textarea>
+        </div>
+        <div class="resizer" id="dragMe"></div>
+        <div class="viewer-pane">
+            <div id="mermaid-output">
+                <p class="placeholder-text">Diagram will appear here</p>
+            </div>
+            <pre id="error-output"></pre>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Ponyo - Mermaid Live Editor
+    </footer>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+       <!-- Modal content remains the same -->
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>About Mermaid Live Editor</h2>
+            <p>This is a live editor for creating <a href="https://mermaid.js.org/" target="_blank">Mermaid.js</a> diagrams.</p>
+            <p>It's designed with a focus on functionality and an information-dense layout, inspired by the professional aesthetic of the U.S. Graphics Company website.</p>
+            <p><strong>Technology Used:</strong> HTML, CSS, JavaScript, Mermaid.js</p>
+             <p><strong>Fonts:</strong> Inter, JetBrains Mono</p>
+            <p>Built for demonstration purposes.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-to-png-converter@1.0.1/dist/svg-to-png-converter.mın.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

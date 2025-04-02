@@ -1,0 +1,417 @@
+/* --- Reset & Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif; /* Updated Font */
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #FFFFFF;
+    color: #231F20;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Utility --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* --- Top Navigation --- */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #F0F0F0;
+    border-bottom: 1px solid #A9A9A9;
+    z-index: 1000;
+    /* Removed box-shadow from nav, buttons will have their own */
+}
+
+/* Inspired by US Graphics color bar */
+.color-bar {
+    height: 5px;
+    background: linear-gradient(to right,
+        #ED1C24, #ED1C24 12.5%, #00A651 12.5%, #00A651 25%,
+        #FFB700 25%, #FFB700 37.5%, #0072CE 37.5%, /* Specific Blue */
+        #0072CE 50%, #4B0082 50%, #4B0082 62.5%, #231F20 62.5%,
+        #231F20 75%, #A9A9A9 75%, #A9A9A9 87.5%, #D3D3D3 87.5%
+    );
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    height: 45px;
+}
+
+.site-title {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #231F20;
+    margin-right: 20px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 8px; /* Increased gap slightly */
+    flex-grow: 1;
+}
+
+/* --- Updated Button Styling --- */
+.nav-button {
+    display: inline-block;
+    padding: 6px 14px; /* Adjusted padding */
+    border: 1px solid #231F20; /* Black border */
+    background-color: #FFFFFF; /* White background */
+    color: #231F20; /* Black text */
+    text-decoration: none;
+    font-size: 0.9em;
+    font-family: inherit; /* Use Inter font */
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 0; /* Sharp corners */
+    box-shadow: 2px 2px 0px 0px #A9A9A9; /* Shadow like the image */
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+    position: relative; /* Needed for potential active state adjustments */
+    /* vertical-align: middle; Align with other potential inline elements */
+}
+
+.nav-button:hover {
+    background-color: #F5F5F5; /* Slightly off-white hover */
+    /* Keep shadow on hover */
+}
+
+.nav-button:active {
+    transform: translate(1px, 1px); /* Press down effect */
+    box-shadow: 1px 1px 0px 0px #A9A9A9; /* Reduce shadow slightly */
+    background-color: #EAEAEA; /* Darker background when active */
+}
+
+/* Style for the active page link */
+.nav-button.active {
+    /* Maybe just bold or a subtle background difference */
+    font-weight: bold;
+    background-color: #E8E8E8; /* Slightly distinct background */
+     /* Keep the standard shadow */
+    box-shadow: 2px 2px 0px 0px #A9A9A9;
+}
+.nav-button.active:active {
+     transform: translate(1px, 1px);
+     box-shadow: 1px 1px 0px 0px #A9A9A9;
+}
+
+
+/* Save button specific accent */
+.save-button {
+    background-color: #ED1C24; /* Red accent */
+    color: #FFFFFF;
+    border-color: #A5151A; /* Darker red border to match intensity */
+    font-weight: bold;
+    box-shadow: 2px 2px 0px 0px #A5151A; /* Darker shadow for red button */
+}
+
+.save-button:hover {
+    background-color: #C7181E; /* Darker red on hover */
+}
+
+.save-button:active {
+    background-color: #AD1419;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px 0px #A5151A;
+}
+
+/* Adjust dropdown container */
+.save-container {
+    position: relative;
+}
+
+/* Dropdown Content Styling (keep simple) */
+.save-options-dropdown, .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 160px;
+    border: 1px solid #A9A9A9;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1); /* Standard dropdown shadow */
+    z-index: 1001;
+    margin-top: 3px; /* Small gap below button */
+}
+.save-options-dropdown {
+     right: 0; /* Align save dropdown to the right */
+}
+.dropdown-content {
+    left: 0; /* Align example dropdown to the left */
+}
+
+
+.save-options-dropdown a, .dropdown-content a {
+    color: #231F20;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9em;
+}
+
+.save-options-dropdown a:hover, .dropdown-content a:hover {
+    background-color: #F0F0F0;
+}
+
+/* Show dropdown logic (can be JS controlled too) */
+.save-container:hover .save-options-dropdown,
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Adjust dropdown trigger button style */
+.dropdown > span {
+    display: inline-block; /* Allow padding etc. */
+     /* Make it look like part of the button */
+     pointer-events: none; /* Click triggers the parent div */
+}
+.dropdown.nav-button {
+    padding-right: 25px; /* Space for dropdown arrow if needed */
+}
+
+
+/* Theme Selector Specific Styles */
+.nav-item { /* Container for label + select */
+    display: flex;
+    align-items: center;
+}
+.theme-select.nav-button {
+    /* Match button style but allow select appearance */
+    -webkit-appearance: none; /* Remove default arrow */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23231F20%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 8px 8px;
+    padding-right: 30px; /* Make space for arrow */
+}
+
+
+/* --- Main Editor Container --- */
+.editor-container {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 50px; /* Adjust based on final .nav-content height */
+    height: calc(100vh - 50px - 30px);
+    border-top: 1px solid #A9A9A9;
+}
+
+/* --- Panes --- */
+.editor-pane,
+.viewer-pane {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    border-left: 1px solid #D3D3D3;
+}
+.editor-pane {
+    border-left: none;
+}
+
+/* --- Editor Pane --- */
+#mermaid-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Editor Font */
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #FDFDFD;
+    color: #231F20;
+    resize: none;
+}
+
+/* --- Resizer Handle --- */
+.resizer {
+    flex-basis: 10px;
+    height: 100%;
+    background-color: #B9B9B9;
+    cursor: ew-resize;
+    border-left: 1px solid #A9A9A9;
+    border-right: 1px solid #A9A9A9;
+    transition: background-color 0.2s ease;
+}
+.resizer:hover {
+     background-color: #A9A9A9;
+}
+
+/* --- Viewer Pane --- */
+#mermaid-output {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #FFFFFF; /* Default background */
+    transition: background-color 0.3s ease; /* Transition for theme changes */
+}
+
+#mermaid-output svg {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.placeholder-text {
+    color: #696969;
+    font-style: italic;
+}
+
+#error-output {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(237, 28, 36, 0.9); /* Slightly more opaque red */
+    color: white;
+    padding: 10px 15px;
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.85em;
+    white-space: pre-wrap;
+    z-index: 10;
+    max-height: 40%;
+    overflow-y: auto;
+    border-top: 1px solid #B8171E;
+    display: none; /* Hidden by default */
+}
+
+/* --- Footer --- */
+footer {
+    height: 30px;
+    background-color: #F0F0F0;
+    border-top: 1px solid #A9A9A9;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8em;
+    color: #696969;
+    flex-shrink: 0;
+}
+
+/* --- About Modal --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 25px;
+    border: 1px solid #A9A9A9;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    color: #231F20; /* Ensure text color */
+}
+
+.modal-content h2 { margin-bottom: 15px; }
+.modal-content p { margin-bottom: 10px; }
+.modal-content a { color: #0072CE; text-decoration: none; } /* Use consistent blue */
+.modal-content a:hover { text-decoration: underline; }
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover, .close-button:focus { color: black; text-decoration: none; }
+
+
+/* --- Responsiveness (Basic Example) --- */
+@media (max-width: 900px) { /* Adjust breakpoint */
+     .nav-links {
+         /* Allow wrapping earlier if needed */
+         flex-wrap: wrap;
+         gap: 5px; /* Reduce gap when wrapping */
+     }
+    .theme-select {
+         /* Ensure select doesn't get too small */
+         min-width: 150px;
+     }
+}
+
+@media (max-width: 768px) {
+    body { overflow: auto; }
+    .editor-container {
+        flex-direction: column;
+        height: auto; /* Allow height to adjust */
+        min-height: calc(100vh - 50px - 30px); /* Placeholder min-height */
+        margin-top: 50px; /* Reset margin-top initially */
+    }
+
+    .editor-pane,
+    .viewer-pane {
+        flex: 1 1 50%; /* Allow shrinking/growing, base 50% */
+        height: 50vh; /* Approximate height */
+        min-height: 250px; /* Minimum interaction height */
+        border-left: none;
+        border-bottom: 1px solid #D3D3D3;
+    }
+     .viewer-pane { border-bottom: none; }
+     .resizer { display: none; }
+
+    /* Adjust nav layout for stacking */
+    .nav-content {
+        flex-wrap: wrap;
+        height: auto; /* Allow height to expand */
+        padding-bottom: 10px;
+    }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start; /* Align wrapped items left */
+        margin-top: 10px;
+         flex-wrap: wrap; /* Ensure links wrap */
+    }
+    .save-container { order: 2; margin-left: auto; } /* Push save to right */
+    .site-title { order: 1; width: calc(100% - 100px); } /* Give title space, adjust width as needed */
+
+     /* Recalculate margin based on potential wrapped nav height */
+     /* This is tricky without JS height calculation, use a safe estimate */
+     .editor-container {
+         margin-top: 75px; /* Increase margin for potentially wrapped nav */
+          min-height: calc(100vh - 75px - 30px);
+     }
+
+     .modal-content { width: 90%; margin: 10% auto; }
+}
